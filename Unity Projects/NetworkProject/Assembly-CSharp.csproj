@@ -60,14 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\02Scripts\BinaryClient.cs" />
-    <Compile Include="Assets\02Scripts\BinaryServer.cs" />
-    <Compile Include="Assets\02Scripts\CustomServer.cs" />
     <Compile Include="Assets\02Scripts\NetworkClient.cs" />
     <Compile Include="Assets\02Scripts\NetworkServer.cs" />
-    <Compile Include="Assets\02Scripts\SocketClient.cs" />
-    <Compile Include="Assets\02Scripts\SocketServer.cs" />
-    <Compile Include="Assets\02Scripts\TcpServer.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>F:/Dev/Learning socket programming/Learning_socket_programming/Unity Projects/NetworkProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
