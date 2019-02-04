@@ -60,8 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\02Scripts\NetworkClient.cs" />
-    <Compile Include="Assets\02Scripts\NetworkServer.cs" />
+    <Compile Include="Assets\02Scripts\ConsoleTCP\NetworkClient.cs" />
+    <Compile Include="Assets\02Scripts\ConsoleTCP\NetworkServer.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>F:/Dev/Learning socket programming/Learning_socket_programming/Unity Projects/NetworkProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
