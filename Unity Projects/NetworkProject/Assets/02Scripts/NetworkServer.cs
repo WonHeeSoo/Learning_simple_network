@@ -71,64 +71,19 @@ public class NetworkServer : MonoBehaviour
 
 			while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
 			{
-				data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+				//data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+				data = System.Text.Encoding.UTF8.GetString(bytes, 0, i);
 				Debug.Log("Received : " + data);
 
 				data = data.ToUpper();
 
-				byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
-
+				//byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
+				byte[] msg = System.Text.Encoding.UTF8.GetBytes(data);
 				stream.Write(msg, 0, msg.Length);
 				Debug.Log("Sent : " + data);
-				Debug.Log("내부한바퀴 돔");
 			}
 
 			client.Close();
-			Debug.Log("한바퀴 돔");
-		}
-	}
-
-	IEnumerator StartServer()
-	{
-		Debug.Log("시작");
-
-		yield return new WaitForSeconds(1.0f);
-
-		Debug.Log("반복문 접속");
-
-		yield return new WaitForSeconds(1.0f);
-
-		while (true)
-		{
-			Debug.Log("Waiting for a connection...");
-			yield return new WaitForSeconds(1.0f);
-			TcpClient client = server.AcceptTcpClient();
-			Debug.Log("Connectied!");
-
-			data = null;
-
-			NetworkStream stream = client.GetStream();
-
-			int i;
-
-			while((i = stream.Read(bytes, 0, bytes.Length))!=0)
-			{
-				data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-				Debug.Log("Received : " + data);
-
-				data = data.ToUpper();
-
-				byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
-
-				stream.Write(msg, 0, msg.Length);
-				Debug.Log("Sent : " + data);
-				Debug.Log("내부한바퀴 돔");
-				yield return new WaitForSeconds(3f);
-			}
-
-			client.Close();
-			Debug.Log("한바퀴 돔");
-			yield return new WaitForSeconds(3f);
 		}
 	}
 }
