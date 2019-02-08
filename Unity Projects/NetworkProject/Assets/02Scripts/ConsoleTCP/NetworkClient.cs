@@ -41,8 +41,19 @@ public class NetworkClient : MonoBehaviour
 		}
 	}
 
-	void Connect(string message)
+	private void OnGUI()
 	{
+		GUI.Box(new Rect(10, 10, 100, 90), "Loader Menu");
+
+		if(GUI.Button(new Rect(20, 40, 80, 20), "Message 1"))
+		{
+
+		}
+	}
+
+	string Connect(string message)
+	{
+		string responseData = string.Empty;
 		try
 		{
 			client = new TcpClient("127.0.0.1", port);
@@ -51,7 +62,7 @@ public class NetworkClient : MonoBehaviour
 			NetworkStream stream = client.GetStream();
 			stream.Write(data, 0, data.Length);
 			data = new byte[256];
-			string responseData = string.Empty;
+			//string responseData = string.Empty;
 
 			int bytes = stream.Read(data, 0, data.Length);
 			//responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
@@ -69,5 +80,6 @@ public class NetworkClient : MonoBehaviour
 		{
 			Debug.Log("SocketException: " + e);
 		}
+		return responseData;
 	}
 }
