@@ -41,16 +41,6 @@ public class NetworkClient : MonoBehaviour
 		}
 	}
 
-	private void OnGUI()
-	{
-		GUI.Box(new Rect(10, 10, 100, 90), "Loader Menu");
-
-		if(GUI.Button(new Rect(20, 40, 80, 20), "Message 1"))
-		{
-
-		}
-	}
-
 	string Connect(string message)
 	{
 		string responseData = string.Empty;
