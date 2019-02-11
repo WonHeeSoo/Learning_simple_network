@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.IO;
 using System;
+using UnityEngine.UI;
 
 public class NetworkClient : MonoBehaviour
 {
@@ -16,28 +17,30 @@ public class NetworkClient : MonoBehaviour
 	string message4 = "뵤벼뱌배베보버바비뷰부브";
 	string message5 = ",./;'[]<>?:%^&*()_+-=~`!@#$%^&";
 	byte[] data;
-	
-	private void Update()
+
+    public Text textObject1;
+
+    private void Update()
 	{
 		if (Input.GetKeyUp(KeyCode.A))
 		{
-			Connect(message1);
+			textObject1.text = Connect(message1);
 		}
 		if (Input.GetKeyUp(KeyCode.S))
 		{
-			Connect(message2);
+            textObject1.text = Connect(message2);
 		}
 		if (Input.GetKeyUp(KeyCode.D))
 		{
-			Connect(message3);
+            textObject1.text = Connect(message3);
 		}
 		if (Input.GetKeyUp(KeyCode.F))
 		{
-			Connect(message4);
+            textObject1.text = Connect(message4);
 		}
 		if (Input.GetKeyUp(KeyCode.G))
 		{
-			Connect(message5);
+            textObject1.text = Connect(message5);
 		}
 	}
 
