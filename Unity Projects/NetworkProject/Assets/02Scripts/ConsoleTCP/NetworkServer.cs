@@ -8,9 +8,11 @@ using System.Threading;
 
 public class NetworkServer : MonoBehaviour
 {
-	TcpListener server = null;
 	int port = 13000;
-	IPAddress localAddr = null;
+    string ip = "172.16.1.120";
+
+    TcpListener server = null;
+    IPAddress localAddr = null;
 
 	byte[] bytes = null;
 	string data = null;
@@ -19,7 +21,7 @@ public class NetworkServer : MonoBehaviour
 
 	private void Awake()
 	{
-		localAddr = IPAddress.Parse("127.0.0.1"); // IPv4 주소
+		localAddr = IPAddress.Parse(ip); // IPv4 주소
 		server = new TcpListener(localAddr, port); // 서버
 
 		bytes = new byte[256]; // 데이터 읽기 용 버퍼
@@ -32,15 +34,12 @@ public class NetworkServer : MonoBehaviour
 		};
 	}
 
-	private void Update()
-	{
-		if (Input.GetKeyUp(KeyCode.S))
-		{
-			th.Start();
-		}
+    private void Start()
+    {
+        th.Start();
 
-	}
-
+    }
+    
 	void StartServerFunc()
 	{
 		try
@@ -53,7 +52,7 @@ public class NetworkServer : MonoBehaviour
 			{
 				Debug.Log("Waiting for a connection...");
 				TcpClient client = server.AcceptTcpClient();
-				Debug.Log("Connectied!");
+				Debug.Log("Connected!");
 
 				data = null;
 
