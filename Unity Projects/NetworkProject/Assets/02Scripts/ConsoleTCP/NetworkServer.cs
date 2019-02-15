@@ -36,7 +36,6 @@ public class NetworkServer : MonoBehaviour
     private void Start()
     {
         th.Start();
-
     }
     
 	void StartServerFunc()
@@ -62,10 +61,7 @@ public class NetworkServer : MonoBehaviour
 					//data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
 					data = System.Text.Encoding.UTF8.GetString(bytes, 0, i);
 					Debug.Log("Received : " + data);
-
-					// 문자열의 복사본을 대문자로 변환
-					//data = data.ToUpper();
-
+                    
 					//byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
 					byte[] msg = System.Text.Encoding.UTF8.GetBytes(data);
 					stream.Write(msg, 0, msg.Length);
@@ -81,7 +77,6 @@ public class NetworkServer : MonoBehaviour
 		}
 		finally
 		{
-			// Stop listening for new clients
 			server.Stop();
 		}
 		

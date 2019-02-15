@@ -22,13 +22,7 @@ public class NetworkClient : MonoBehaviour
 	byte[] data;
 
     public Text textObject;
-
-    private void Start()
-    {
-        client = new TcpClient(ip, port);
-        stream = client.GetStream();
-    }
-
+    
     private void Update()
 	{
 		if (Input.GetKeyUp(KeyCode.A))
@@ -51,13 +45,17 @@ public class NetworkClient : MonoBehaviour
 		{
             textObject.text = SendString(message5);
 		}
+        if (Input.GetKeyUp(KeyCode.O))
+        {
+            client = new TcpClient(ip, port);
+            stream = client.GetStream();
+        }
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            stream.Close();
+            client.Close();
+        }
 	}
-
-    private void OnDestroy()
-    {
-        stream.Close();
-        client.Close();
-    }
 
     string SendString(string message)
 	{
