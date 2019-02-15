@@ -26,7 +26,6 @@ public class NetworkServer : MonoBehaviour
 
 		bytes = new byte[256]; // 데이터 읽기 용 버퍼
 		data = null;
-		Debug.Log("Awake");
 
 		th = new Thread(new ThreadStart(StartServerFunc)) // Thread
 		{
@@ -44,9 +43,7 @@ public class NetworkServer : MonoBehaviour
 	{
 		try
 		{
-			Debug.Log("시작");
 			server.Start(); // 클라이언트 요청 수신 대기
-			Debug.Log("반복문 접속");
 			
 			while (true)
 			{
