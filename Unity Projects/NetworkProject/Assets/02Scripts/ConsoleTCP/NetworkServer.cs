@@ -9,7 +9,7 @@ using System.Threading;
 public class NetworkServer : MonoBehaviour
 {
 	int port = 13000;
-    string ip = "172.16.1.120";
+    string ip = "127.0.0.1";
 
     TcpListener server = null;
     IPAddress localAddr = null;

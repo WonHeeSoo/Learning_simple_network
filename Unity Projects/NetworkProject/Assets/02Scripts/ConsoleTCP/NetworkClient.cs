@@ -6,11 +6,12 @@ using System.Net;
 using System.IO;
 using System;
 using UnityEngine.UI;
+using System.Threading;
 
 public class NetworkClient : MonoBehaviour
 {
 	int port = 13000;
-    string ip = "172.16.1.120";
+    string ip = "127.0.0.1";
     NetworkStream stream = null;
     TcpClient client = null;
 	string message1 = "안녕하세요 반갑습니다.";
@@ -60,7 +61,10 @@ public class NetworkClient : MonoBehaviour
 
     string SendString(string message)
 	{
-		string responseData = string.Empty;
+        //client = new TcpClient(ip, port);
+        //stream = client.GetStream();
+
+        string responseData = string.Empty;
 		try
 		{
 			//data = System.Text.Encoding.ASCII.GetBytes(message);
@@ -74,8 +78,10 @@ public class NetworkClient : MonoBehaviour
 			//responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 			responseData = System.Text.Encoding.UTF8.GetString(data, 0, bytes);
 			Debug.Log("Received: " + responseData);
-            
-		}
+
+            //stream.Close();
+            //client.Close();
+        }
 		catch (ArgumentNullException e)
 		{
 			Debug.Log("ArgumentNullException: " + e);
