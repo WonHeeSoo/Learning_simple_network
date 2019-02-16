@@ -19,6 +19,10 @@ public class ChatServer : MonoBehaviour
 
     Thread th = null;
 
+    Queue[] messageQueue = null;
+    ArrayList clientList = null;
+    ArrayList streamList = null;
+
     private void Awake()
     {
         localAddr = IPAddress.Parse(ip); // IPv4 주소
