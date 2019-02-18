@@ -52,12 +52,14 @@ public class ChatServer : MonoBehaviour
             {
                 Debug.Log("Waiting for a connection...");
                 TcpClient client = server.AcceptTcpClient();
+                clientList.Add(client);
                 Debug.Log("Connected!");
 
-                data = null;
-
                 NetworkStream stream = client.GetStream();
+                streamList.Add(stream);
 
+                data = null;
+                
                 int i;
 
                 while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
@@ -79,17 +81,23 @@ public class ChatServer : MonoBehaviour
         {
             Debug.Log("SocketException : " + e);
         }
-        finally
-        {
-            
-        }
 
     }
     void StopServerFunc()
     {
         try
         {
+            foreach(TcpClient client in clientList)
+            {
+                client.Close();
+            }
+            clientList.Clear();
+            streamList.Clear();
             server.Stop();
+        }
+        catch (SocketException e)
+        {
+            Debug.Log("SocketException : " + e);
         }
     }
 }
