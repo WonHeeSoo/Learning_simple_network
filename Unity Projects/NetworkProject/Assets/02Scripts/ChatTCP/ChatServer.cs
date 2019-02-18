@@ -81,8 +81,15 @@ public class ChatServer : MonoBehaviour
         }
         finally
         {
-            server.Stop();
+            
         }
 
+    }
+    void StopServerFunc()
+    {
+        try
+        {
+            server.Stop();
+        }
     }
 }
