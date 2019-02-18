@@ -42,6 +42,25 @@ public class ChatServer : MonoBehaviour
         th.Start();
     }
 
+    void ReadWriteFunc()
+    {
+        data = null;
+
+        int i;
+
+        while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
+        {
+            //data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+            data = System.Text.Encoding.UTF8.GetString(bytes, 0, i);
+            Debug.Log("Received : " + data);
+
+            //byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
+            byte[] msg = System.Text.Encoding.UTF8.GetBytes(data);
+            stream.Write(msg, 0, msg.Length);
+            Debug.Log("Sent : " + data);
+        }
+    }
+
     void StartServerFunc()
     {
         try
@@ -58,23 +77,7 @@ public class ChatServer : MonoBehaviour
                 NetworkStream stream = client.GetStream();
                 streamList.Add(stream);
 
-                data = null;
                 
-                int i;
-
-                while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
-                {
-                    //data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                    data = System.Text.Encoding.UTF8.GetString(bytes, 0, i);
-                    Debug.Log("Received : " + data);
-
-                    //byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
-                    byte[] msg = System.Text.Encoding.UTF8.GetBytes(data);
-                    stream.Write(msg, 0, msg.Length);
-                    Debug.Log("Sent : " + data);
-                }
-
-                client.Close();
             }
         }
         catch (SocketException e)
