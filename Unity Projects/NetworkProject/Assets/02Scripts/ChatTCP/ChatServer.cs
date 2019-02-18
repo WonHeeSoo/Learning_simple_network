@@ -17,6 +17,8 @@ public class ChatServer : MonoBehaviour
     byte[] bytes = null;
     string data = null;
 
+    bool isStart = false;
+
     Thread th = null;
 
     Queue[] messageQueue = null;
@@ -40,6 +42,17 @@ public class ChatServer : MonoBehaviour
     private void Start()
     {
         th.Start();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            if (isStart.Equals(false))
+            {
+
+            }
+        }
     }
 
     void ReadWriteFunc()
@@ -105,5 +118,11 @@ public class ChatServer : MonoBehaviour
         {
             Debug.Log("SocketException : " + e);
         }
+    }
+
+    void RestartServerFunc()
+    {
+        StopServerFunc();
+        StartServerFunc();
     }
 }
