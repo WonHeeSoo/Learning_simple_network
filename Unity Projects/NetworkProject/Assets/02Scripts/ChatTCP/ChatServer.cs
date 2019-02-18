@@ -16,8 +16,7 @@ public class ChatServer : MonoBehaviour
 
     byte[] bytes = null;
     string data = null;
-
-    bool isStart = false;
+    
 
     Thread th = null;
 
@@ -48,10 +47,7 @@ public class ChatServer : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.S))
         {
-            if (isStart.Equals(false))
-            {
-
-            }
+            RestartServerFunc();
         }
     }
 
