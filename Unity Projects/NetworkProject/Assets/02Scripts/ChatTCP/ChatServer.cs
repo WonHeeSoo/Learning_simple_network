@@ -53,22 +53,35 @@ public class ChatServer : MonoBehaviour
 
     void ReadWriteFunc()
     {
-        lock(streamList)
+        ArrayList readWriteList = new ArrayList();
+        readWriteList = clientList;
+
+        while(true)
         {
-            data = null;
+            Socket.Select(clientList, null, null, int.MaxValue);
 
-            int i;
-
-            while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
+            foreach (TcpClient client in clientList)
             {
-                //data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                data = System.Text.Encoding.UTF8.GetString(bytes, 0, i);
-                Debug.Log("Received : " + data);
+                if (client == )
+            }
 
-                //byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
-                byte[] msg = System.Text.Encoding.UTF8.GetBytes(data);
-                stream.Write(msg, 0, msg.Length);
-                Debug.Log("Sent : " + data);
+            lock (streamList)
+            {
+                data = null;
+
+                int i;
+
+                while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
+                {
+                    //data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+                    data = System.Text.Encoding.UTF8.GetString(bytes, 0, i);
+                    Debug.Log("Received : " + data);
+
+                    //byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
+                    byte[] msg = System.Text.Encoding.UTF8.GetBytes(data);
+                    stream.Write(msg, 0, msg.Length);
+                    Debug.Log("Sent : " + data);
+                }
             }
         }
     }
@@ -83,13 +96,11 @@ public class ChatServer : MonoBehaviour
             {
                 Debug.Log("Waiting for a connection...");
                 TcpClient client = server.AcceptTcpClient();
-                clientList.Add(client);
                 Debug.Log("Connected!");
+                clientList.Add(client);
 
                 NetworkStream stream = client.GetStream();
                 streamList.Add(stream);
-
-                
             }
         }
         catch (SocketException e)
