@@ -20,7 +20,7 @@ public class ChatServer : MonoBehaviour
 
     Thread th = null;
 
-    Queue[] messageQueue = null;
+    Queue messageQueue = null;
     ArrayList clientList = null;
     ArrayList streamList = null;
 
@@ -54,15 +54,27 @@ public class ChatServer : MonoBehaviour
     void ReadWriteFunc()
     {
         ArrayList readWriteList = new ArrayList();
-        readWriteList = clientList;
 
         while(true)
         {
             Socket.Select(clientList, null, null, int.MaxValue);
+            int i;
 
             foreach (TcpClient client in clientList)
             {
-                if (client == )
+                NetworkStream stream = client.GetStream();
+
+                if ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
+                {
+                    //data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+                    messageQueue.Enqueue(System.Text.Encoding.UTF8.GetString(bytes, 0, i));
+                    Debug.Log("Received : " + data);
+
+                    //byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
+                    byte[] msg = System.Text.Encoding.UTF8.GetBytes(data);
+                    stream.Write(msg, 0, msg.Length);
+                    Debug.Log("Sent : " + data);
+                }
             }
 
             lock (streamList)
