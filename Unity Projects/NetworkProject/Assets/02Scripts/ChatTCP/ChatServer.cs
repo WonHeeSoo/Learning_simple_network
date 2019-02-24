@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
+
 public class ChatServer : MonoBehaviour
 {
     int port = 13000;
@@ -23,7 +24,7 @@ public class ChatServer : MonoBehaviour
     Queue messageQueue = null;
     ArrayList clientList = null;
     ArrayList streamList = null;
-
+    
     private void Awake()
     {
         localAddr = IPAddress.Parse(ip); // IPv4 주소
