@@ -70,7 +70,7 @@ public class ChatServer : MonoBehaviour
                     //data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
                     messageQueue.Enqueue(System.Text.Encoding.UTF8.GetString(bytes, 0, i));
                     Debug.Log("Received : " + data);
-
+                    
                     //byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
                     byte[] msg = System.Text.Encoding.UTF8.GetBytes(data);
                     stream.Write(msg, 0, msg.Length);

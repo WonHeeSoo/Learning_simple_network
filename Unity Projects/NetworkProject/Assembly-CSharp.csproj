@@ -64,6 +64,7 @@
     <Compile Include="Assets\02Scripts\ChatTCP\ChatServer.cs" />
     <Compile Include="Assets\02Scripts\ChatTCP\InputFieldEdit.cs" />
     <Compile Include="Assets\02Scripts\ChatTCP\TextEnterButton.cs" />
+    <Compile Include="Assets\02Scripts\ConsoleTCP\MultiNetworkServer.cs" />
     <Compile Include="Assets\02Scripts\ConsoleTCP\NetworkClient.cs" />
     <Compile Include="Assets\02Scripts\ConsoleTCP\NetworkServer.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
