@@ -77,7 +77,7 @@ public class ChatServer : MonoBehaviour
                     Debug.Log("Sent : " + data);
                 }
             }
-
+            /*
             lock (streamList)
             {
                 data = null;
@@ -95,7 +95,7 @@ public class ChatServer : MonoBehaviour
                     stream.Write(msg, 0, msg.Length);
                     Debug.Log("Sent : " + data);
                 }
-            }
+            }*/
         }
     }
 
