@@ -19,7 +19,8 @@ public class MultiNetworkServer : MonoBehaviour
     string data = null;
 
 
-    Thread th = null;
+    Thread startServerThread = null;
+    Thread serverReadWriteThread = null;
 
     Queue messageQueue = null;
     ArrayList clientList = null;
@@ -33,15 +34,22 @@ public class MultiNetworkServer : MonoBehaviour
         bytes = new byte[256]; // 데이터 읽기 용 버퍼
         data = null;
 
-        th = new Thread(new ThreadStart(StartServerFunc)) // Thread
+        startServerThread = new Thread(new ThreadStart(StartServerFunc)) // Thread
         {
             IsBackground = true // 주 스레드와 함께 종료
         };
+        serverReadWriteThread = new Thread(new ThreadStart(ReadWriteFunc)) // Thread
+        {
+            IsBackground = true // 주 스레드와 함께 종료
+        };
+
+        clientList = new ArrayList();
+        streamList = new ArrayList();
     }
 
     private void Start()
     {
-        th.Start();
+        startServerThread.Start();
     }
 
     private void Update()
@@ -54,8 +62,6 @@ public class MultiNetworkServer : MonoBehaviour
 
     void ReadWriteFunc()
     {
-        ArrayList readWriteList = new ArrayList();
-
         while (true)
         {
             Socket.Select(clientList, null, null, int.MaxValue);
@@ -85,6 +91,7 @@ public class MultiNetworkServer : MonoBehaviour
         try
         {
             server.Start(); // 클라이언트 요청 수신 대기
+            serverReadWriteThread.Start();
 
             while (true)
             {
