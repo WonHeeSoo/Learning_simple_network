@@ -77,25 +77,6 @@ public class MultiNetworkServer : MonoBehaviour
                     Debug.Log("Sent : " + data);
                 }
             }
-            /*
-            lock (streamList)
-            {
-                data = null;
-
-                int i;
-
-                while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
-                {
-                    //data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                    data = System.Text.Encoding.UTF8.GetString(bytes, 0, i);
-                    Debug.Log("Received : " + data);
-
-                    //byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
-                    byte[] msg = System.Text.Encoding.UTF8.GetBytes(data);
-                    stream.Write(msg, 0, msg.Length);
-                    Debug.Log("Sent : " + data);
-                }
-            }*/
         }
     }
 
